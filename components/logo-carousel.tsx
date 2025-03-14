@@ -43,7 +43,7 @@ export function LogoCarousel() {
             Trusted By
           </h2>
           <p className="text-xs md:text-sm text-muted-foreground">
-            We've partnered with leading brands across industries
+            We&apos;ve partnered with leading brands across industries
           </p>
         </motion.div>
 

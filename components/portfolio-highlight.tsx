@@ -36,11 +36,11 @@ export function PortfolioHighlight() {
               100+
             </div>
             <p className="text-sm md:text-base leading-relaxed relative z-10">
-              "Since our establishment in 2020, we have collaborated with over{" "}
+            &quot;Since our establishment in 2020, we have collaborated with over{" "}
               <span className="font-semibold text-[#049CE3]">100 brands</span>{" "}
               spanning diverse industries, offering a comprehensive range of
               digital, creative, and DOOH marketing services as full-service
-              digital providers."
+              digital providers.&quot;
             </p>
           </div>
 
