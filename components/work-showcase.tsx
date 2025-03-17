@@ -2,10 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 
 const projects = [
