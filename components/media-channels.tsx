@@ -40,6 +40,11 @@ const channels = [
     icon: "/channels/amazon.jpg",
     description: "E-commerce Ads",
   },
+  {
+    name: "Ecommerce & Web Development",
+    icon: "/channels/react.png",
+    description: "Shopify & Custom Stores",
+  }
 ];
 
 export function MediaChannels() {

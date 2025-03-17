@@ -8,6 +8,8 @@ const placementCategories = [
   {
     name: "OTT & Entertainment",
     icon: <Tv className="h-10 w-10 text-[#049CE3]" />,
+    description:
+      "High Awareness platforms with full screen content viewership.",
     placements: [
       "Connected TV",
       "Streaming Services",
@@ -16,28 +18,34 @@ const placementCategories = [
     ],
   },
   {
-    name: "Daily Apps",
+    name: "Daily Apps & Online",
     icon: <Smartphone className="h-10 w-10 text-[#049CE3]" />,
+    description:
+      "Daily use apps and news are the highest consumed genre after social media. Supports Video, Display, and innovations.",
     placements: [
-      "Mobile Applications",
-      "Utility Apps",
+      "Mobile Applications & Utility Apps",
       "Social Media",
       "News Apps",
+      "Display Network & Native Advertising",
     ],
   },
   {
-    name: "Website/Online",
+    name: "Cinema",
     icon: <Globe className="h-10 w-10 text-[#049CE3]" />,
+    description:
+      "Premium viewing experience with captive audience and high engagement in distraction-free environment.",
     placements: [
-      "Display Network",
-      "Native Advertising",
-      "Search Results",
-      "Content Partnerships",
+      "Premium Multiplexes",
+      "Mid-tier Theaters",
+      "Local Cinemas",
+      "Pre-movie Ads",
+      "Interval Promotions",
     ],
   },
   {
     name: "Audio Ads",
     icon: <Headphones className="h-10 w-10 text-[#049CE3]" />,
+    description: "Use of audio on music, news and podcasts on top platforms.",
     placements: [
       "Podcasts",
       "Music Streaming",
@@ -48,6 +56,8 @@ const placementCategories = [
   {
     name: "PDOOH",
     icon: <MapPin className="h-10 w-10 text-[#049CE3]" />,
+    description:
+      "Run ads when you want, where you want with precision targeting and measurement across screens.",
     placements: [
       "Digital Billboards",
       "Transit Displays",
@@ -115,12 +125,17 @@ export function Placements() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <div className="border border-border rounded-lg p-6 bg-gradient-to-br from-card to-blue-50/20 dark:from-card dark:to-blue-950/20 hover:border-[#049CE3]/20 transition-all duration-300 hover:shadow-[0_0_15px_rgba(4,156,227,0.1)] group">
-                    <div className="flex flex-col items-center text-center mb-6">
+                    <div className="flex flex-col items-center text-center mb-4">
                       <div className="mb-4 p-3 rounded-full bg-blue-50/50 dark:bg-blue-950/50 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/70 transition-colors">
                         {category.icon}
                       </div>
                       <h3 className="text-lg font-medium">{category.name}</h3>
                     </div>
+
+                    <p className="text-xs text-muted-foreground mb-4 text-center">
+                      {category.description}
+                    </p>
+
                     <ul className="space-y-3">
                       {category.placements.map((placement, idx) => (
                         <li key={idx} className="text-xs flex items-center">

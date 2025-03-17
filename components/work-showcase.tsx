@@ -10,24 +10,24 @@ import { MaxWidthWrapper } from "./max-width-wrapper";
 
 const projects = [
   {
-    title: "Revitalizing Eco Brands",
+    title: "Revitalizing Traditional Brands",
     category: "Brand Strategy",
     description:
-      "A complete brand overhaul for a sustainable product line, resulting in 45% increased market recognition.",
+      "A complete brand overhaul for a sustainable product line in a competitive market focusing on a digital audience.",
     image: "/work/eco.jpg",
   },
   {
-    title: "Tech Startup Website",
-    category: "Web Development",
+    title: "Engagement Led Traffic Campaign",
+    category: "OTT & Digital",
     description:
-      "Modern, responsive website design with custom animations and seamless user experience for a growing tech startup.",
+      "Successful campaigns across OTT channels and top publishers increasing the overall campaign engagement and the brand's website traffic by 400%.",
     image: "/work/startup.jpg",
   },
   {
-    title: "E-commerce Redesign",
-    category: "UX/UI Design",
+    title: "Mix and Match of Traditional and Online Media",
+    category: "Integrated Marketing",
     description:
-      "Streamlined shopping experience with intuitive navigation, resulting in 60% increase in conversion rate.",
+      "Combining channels like OOH media, cinema, and online websites and apps & influencer marketing to drive a 360° marketing narrative.",
     image: "/work/ecom.jpg",
   },
 ];
@@ -70,19 +70,14 @@ export function WorkShowcase() {
                   alt={project.title}
                   width={600}
                   height={450}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[102%] select-none"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 select-none"
                   draggable="false"
                 />
               </div>
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <p className="text-xs text-[#049CE3] font-medium">
-                    {project.category}
-                  </p>
-                  <Link href="#" className="text-[#049CE3]">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </div>
+                <p className="text-xs text-[#049CE3] font-medium">
+                  {project.category}
+                </p>
                 <h3 className="text-lg font-medium">{project.title}</h3>
                 <p className="text-xs text-muted-foreground">
                   {project.description}
@@ -90,17 +85,6 @@ export function WorkShowcase() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="flex justify-center mt-12">
-          <Button
-            variant="outline"
-            className="rounded-md border-border shadow-none text-xs hover:text-[#049CE3] hover:border-[#049CE3]"
-            onClick={() => window.open("#", "_blank")}
-          >
-            View All Projects
-            <ArrowUpRight className="ml-2 h-4 w-4" />
-          </Button>
         </div>
       </MaxWidthWrapper>
     </section>

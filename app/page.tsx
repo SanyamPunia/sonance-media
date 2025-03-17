@@ -8,19 +8,17 @@ import { PortfolioHighlight } from "@/components/portfolio-highlight";
 import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
-// import { LogoCarousel } from "@/components/logo-carousel";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      {/* <LogoCarousel /> */}
       <Services />
-      <WorkShowcase />
-      <PortfolioHighlight />
       <MediaChannels />
       <Placements />
+      <PortfolioHighlight />
+      <WorkShowcase />
       <Testimonials />
       <Contact />
       <Footer />

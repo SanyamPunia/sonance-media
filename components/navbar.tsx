@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 import { ThemeToggle } from "./theme-toggle";
+import Image from "next/image";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -33,7 +34,16 @@ export function Navbar() {
     >
       <MaxWidthWrapper>
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/sonance-logo.png"
+              className="select-none"
+              draggable="false"
+              width={35}
+              height={35}
+              alt="sonance-logo"
+            />
+
             <span className="text-lg font-bold tracking-tight">
               SONANCE MEDIA
             </span>
