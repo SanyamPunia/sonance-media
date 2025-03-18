@@ -1,51 +1,50 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 
-const carouselImages = [
+const galleryImages = [
   "/hero/hero-1.jpg",
   "/hero/hero-2.jpg",
   "/hero/hero-3.jpg",
   "/hero/hero-4.jpg",
+  "/hero/hero-5.jpg",
+  "/hero/hero-6.jpg",
+  "/hero/hero-7.jpg",
 ];
 
 export function Hero() {
-  const [currentImage, setCurrentImage] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout>(null);
 
-  // Auto-advance carousel
+  // Auto-rotate active image
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    intervalRef.current = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % galleryImages.length);
+    }, 6000);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
-
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImage(
-      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
-    );
-  };
 
   return (
     <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-background to-blue-50/30 dark:from-background dark:to-blue-950/10">
       <MaxWidthWrapper>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, y: 20 }}
+            className="space-y-8 order-2 lg:order-1"
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               SONANCE MEDIA
@@ -83,68 +82,72 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Carousel */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="relative rounded-xl border-4 border-gray-200 dark:border-gray-800 overflow-hidden aspect-video shadow-lg bg-black">
-              {/* TV-like shape with rounded corners and border */}
-              <div className="absolute inset-0 z-10 pointer-events-none rounded-lg border-4 border-gray-300 dark:border-gray-700 shadow-inner"></div>
+          {/* Image Gallery */}
+          <div className="relative h-[400px] md:h-[500px] order-1 lg:order-2">
+            <div className="relative w-full h-full rounded-lg overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeImage}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <Image
+                    src={galleryImages[activeImage] || "/placeholder.svg"}
+                    alt={`Featured image ${activeImage + 1}`}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+              </AnimatePresence>
 
-              {/* Carousel images */}
-              <div className="relative w-full h-full">
-                {carouselImages.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`absolute inset-0 transition-opacity duration-1000 ${
-                      index === currentImage ? "opacity-100" : "opacity-0"
-                    }`}
-                  >
-                    <Image
-                      src={image || "/placeholder.svg"}
-                      alt={`Showcase image ${index + 1}`}
-                      fill
-                      className="object-cover select-auto"
-                      draggable="false"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Navigation buttons */}
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-
-              {/* Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
-                {carouselImages.map((_, index) => (
+              {/* Image indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                {galleryImages.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentImage(index)}
+                    onClick={() => {
+                      setActiveImage(index);
+                      // Reset the interval when manually changing images
+                      if (intervalRef.current) {
+                        clearInterval(intervalRef.current);
+                      }
+                      intervalRef.current = setInterval(() => {
+                        setActiveImage(
+                          (prev) => (prev + 1) % galleryImages.length
+                        );
+                      }, 4000);
+                    }}
                     className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentImage ? "bg-white" : "bg-white/50"
+                      index === activeImage
+                        ? "bg-white"
+                        : "bg-white/50 hover:bg-white/80"
                     }`}
-                    aria-label={`Go to slide ${index + 1}`}
+                    aria-label={`View image ${index + 1}`}
                   />
                 ))}
               </div>
             </div>
-          </motion.div>
+
+            {/* Thumbnail preview */}
+            <div className="absolute -bottom-10 -right-5 hidden md:block">
+              <div className="relative w-[100px] h-[140px] rounded-md overflow-hidden border-2 border-white dark:border-gray-800 shadow-md">
+                <Image
+                  src={
+                    galleryImages[(activeImage + 1) % galleryImages.length] ||
+                    "/placeholder.svg"
+                  }
+                  alt="Next image preview"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </MaxWidthWrapper>
     </section>

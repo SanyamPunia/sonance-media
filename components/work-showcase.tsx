@@ -11,7 +11,7 @@ const projects = [
     category: "Brand Strategy",
     description:
       "A complete brand overhaul for a sustainable product line in a competitive market focusing on a digital audience.",
-    image: "/work/eco.jpg",
+    image: "/hero/hero-5.jpg",
   },
   {
     title: "Engagement Led Traffic Campaign",
