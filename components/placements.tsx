@@ -21,7 +21,7 @@ const placementCategories = [
     name: "Daily Apps & Online",
     icon: <Smartphone className="h-10 w-10 text-[#049CE3]" />,
     description:
-      "Daily use apps and news are the highest consumed genre after social media. Supports Video, Display, and innovations.",
+      "Daily use apps are the highest consumed genre after social media. Supports Video, Display, & innovations.",
     placements: [
       "Mobile Applications & Utility Apps",
       "Social Media",
@@ -57,7 +57,7 @@ const placementCategories = [
     name: "PDOOH",
     icon: <MapPin className="h-10 w-10 text-[#049CE3]" />,
     description:
-      "Run ads when you want, where you want with precision targeting and measurement across screens.",
+      "Run ads when and where you want with precision targeting and measurement across screens.",
     placements: [
       "Digital Billboards",
       "Transit Displays",

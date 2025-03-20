@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { MaxWidthWrapper } from "./max-width-wrapper";
@@ -19,32 +19,40 @@ const galleryImages = [
 ];
 
 export function Hero() {
-  const [activeImage, setActiveImage] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout>(null);
+  // const [activeImage, setActiveImage] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax effect values
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
 
   // Auto-rotate active image
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setActiveImage((prev) => (prev + 1) % galleryImages.length);
-    }, 6000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveImage((prev) => (prev + 1) % galleryImages.length);
+  //   }, 3000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
-    <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-background to-blue-50/30 dark:from-background dark:to-blue-950/10">
+    <section
+      ref={containerRef}
+      className="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-background to-blue-50/30 dark:from-background dark:to-blue-950/10 overflow-hidden"
+    >
       <MaxWidthWrapper>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div
-            className="space-y-8 order-2 lg:order-1"
-            initial={{ opacity: 0, y: 10 }}
+            className="space-y-8 z-10"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               SONANCE MEDIA
@@ -82,71 +90,128 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Image Gallery */}
-          <div className="relative h-[400px] md:h-[500px] order-1 lg:order-2">
-            <div className="relative w-full h-full rounded-lg overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeImage}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
+          {/* Creative Image Gallery */}
+          <div className="relative h-[400px] md:h-[500px] select-none">
+            {/* Floating image grid with parallax effect */}
+            <motion.div
+              className="absolute top-0 left-0 w-full h-full"
+              style={{ opacity }}
+            >
+              {/* Main featured image (larger) */}
+              <motion.div
+                className="absolute top-[10%] left-[10%] z-30 rounded-lg overflow-hidden shadow-xl border border-white/20 dark:border-gray-800/50"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                style={{ y: y1 }}
+              >
+                <div className="relative w-[180px] h-[240px] md:w-[220px] md:h-[300px] bg-gray-100 dark:bg-gray-800">
                   <Image
-                    src={galleryImages[activeImage] || "/placeholder.svg"}
-                    alt={`Featured image ${activeImage + 1}`}
+                    src={galleryImages[0] || "/placeholder.svg"}
+                    alt="Featured work"
                     fill
                     className="object-cover"
-                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
-              </AnimatePresence>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-3">
+                    <span className="text-white text-xs font-medium">
+                      Project
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
 
-              {/* Image indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+              {/* Secondary images (smaller, staggered) */}
+              <motion.div
+                className="absolute top-[5%] right-[15%] z-20 rounded-lg overflow-hidden shadow-lg border border-white/20 dark:border-gray-800/50"
+                initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, rotate: -5 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                style={{ y: y2 }}
+              >
+                <div className="relative w-[120px] h-[160px] md:w-[160px] md:h-[200px] bg-gray-100 dark:bg-gray-800">
+                  <Image
+                    src={galleryImages[1] || "/placeholder.svg"}
+                    alt="Secondary work"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-[15%] left-[25%] z-10 rounded-lg overflow-hidden shadow-lg border border-white/20 dark:border-gray-800/50"
+                initial={{ opacity: 0, scale: 0.8, rotate: 3 }}
+                animate={{ opacity: 1, scale: 1, rotate: 3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                style={{ y: y3 }}
+              >
+                <div className="relative w-[140px] h-[100px] md:w-[180px] md:h-[130px] bg-gray-100 dark:bg-gray-800">
+                  <Image
+                    src={galleryImages[2] || "/placeholder.svg"}
+                    alt="Secondary work"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-[25%] right-[5%] z-20 rounded-lg overflow-hidden shadow-lg border border-white/20 dark:border-gray-800/50"
+                initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
+                animate={{ opacity: 1, scale: 1, rotate: -3 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{ y: y1 }}
+              >
+                <div className="relative w-[100px] h-[150px] md:w-[140px] md:h-[200px] bg-gray-100 dark:bg-gray-800">
+                  <Image
+                    src={galleryImages[3] || "/placeholder.svg"}
+                    alt="Secondary work"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Decorative elements */}
+              <motion.div
+                className="absolute top-[40%] right-[30%] w-8 h-8 rounded-full border-2 border-[#049CE3]/30 dark:border-[#049CE3]/50"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              />
+
+              <motion.div
+                className="absolute bottom-[10%] left-[15%] w-4 h-4 rounded-full bg-[#049CE3]/20 dark:bg-[#049CE3]/30"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+
+              <motion.div
+                className="absolute top-[20%] left-[40%] text-[#049CE3]"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <Plus className="w-6 h-6" />
+              </motion.div>
+
+              {/* Image selection dots */}
+              {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-2">
                 {galleryImages.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => {
-                      setActiveImage(index);
-                      // Reset the interval when manually changing images
-                      if (intervalRef.current) {
-                        clearInterval(intervalRef.current);
-                      }
-                      intervalRef.current = setInterval(() => {
-                        setActiveImage(
-                          (prev) => (prev + 1) % galleryImages.length
-                        );
-                      }, 4000);
-                    }}
+                    onClick={() => setActiveImage(index)}
                     className={`w-2 h-2 rounded-full transition-colors ${
                       index === activeImage
-                        ? "bg-white"
-                        : "bg-white/50 hover:bg-white/80"
+                        ? "bg-[#049CE3]"
+                        : "bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600"
                     }`}
                     aria-label={`View image ${index + 1}`}
                   />
                 ))}
-              </div>
-            </div>
-
-            {/* Thumbnail preview */}
-            <div className="absolute -bottom-10 -right-5 hidden md:block">
-              <div className="relative w-[100px] h-[140px] rounded-md overflow-hidden border-2 border-white dark:border-gray-800 shadow-md">
-                <Image
-                  src={
-                    galleryImages[(activeImage + 1) % galleryImages.length] ||
-                    "/placeholder.svg"
-                  }
-                  alt="Next image preview"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+              </div> */}
+            </motion.div>
           </div>
         </div>
       </MaxWidthWrapper>

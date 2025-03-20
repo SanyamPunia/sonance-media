@@ -8,6 +8,7 @@ import { PortfolioHighlight } from "@/components/portfolio-highlight";
 import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { TeamSection } from "@/components/team-section";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Placements />
       <PortfolioHighlight />
       <WorkShowcase />
+      <TeamSection />
       <Testimonials />
       <Contact />
       <Footer />
