@@ -5,14 +5,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 import { Users, Lightbulb, Target, Award } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./ui/carousel";
-import { Card, CardContent } from "./ui/card";
 
 export function TeamSection() {
   const containerRef = useRef<HTMLDivElement>(null);
