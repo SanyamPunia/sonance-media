@@ -75,14 +75,6 @@ export function Hero() {
   // Spotlight movement
   const spotlightX = useMotionValue(60);
   const spotlightY = useMotionValue(-20);
-  const springSpotlightX = useSpring(spotlightX, {
-    stiffness: 50,
-    damping: 30,
-  });
-  const springSpotlightY = useSpring(spotlightY, {
-    stiffness: 50,
-    damping: 30,
-  });
 
   useEffect(() => {
     // Continuous floating animations
@@ -151,20 +143,7 @@ export function Hero() {
       spotlightY.set(Math.random() * -40);
     }, 8000);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100,
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       floatAnimation1.stop();
       floatAnimation2.stop();
       floatAnimation3.stop();
