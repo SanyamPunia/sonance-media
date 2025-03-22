@@ -31,7 +31,7 @@ export async function sendContactEmail(formData: ContactFormValues) {
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: "Sonance Media <onboarding@resend.dev>",
-      to: ["lewarends@gmail.com"],
+      to: ["lewarends@gmail.com", "pranjal.sharma@diptree.com"],
       subject: `New Contact Form Submission: ${validatedData.subject}`,
       react: ContactFormEmail({
         name: validatedData.name,
