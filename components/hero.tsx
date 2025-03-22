@@ -34,9 +34,7 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
 
   // Floating animation values
   const floatY1 = useMotionValue(0);
