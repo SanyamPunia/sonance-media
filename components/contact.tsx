@@ -137,7 +137,7 @@ export function Contact() {
         >
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">Get In Touch</h2>
           <p className="text-xs md:text-sm text-muted-foreground">
-            Ready to elevate your brand? Let's start a conversation
+            Ready to elevate your brand? Let&apos;s start a conversation
           </p>
         </motion.div>
 
@@ -153,7 +153,7 @@ export function Contact() {
               <CardHeader>
                 <CardTitle>Send us a message</CardTitle>
                 <CardDescription className="text-xs">
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </CardDescription>
               </CardHeader>
               <CardContent>
