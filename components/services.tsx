@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import {
   Brush,
   Code,
-  LineChart,
   Megaphone,
+  Pencil,
   Smartphone,
-  Globe,
+  SquarePlay
 } from "lucide-react";
 
 import {
@@ -22,36 +22,36 @@ import { MaxWidthWrapper } from "./max-width-wrapper";
 const services = [
   {
     icon: <Brush className="h-8 w-8 text-[#049CE3]" />,
-    title: "Brand Strategy",
+    title: "Brand Strategy & Brand Building",
     description:
       "We develop comprehensive brand strategies that position your business for success in competitive markets.",
   },
   {
-    icon: <Code className="h-8 w-8 text-[#049CE3]" />,
-    title: "Web Development",
+    icon: <SquarePlay className="h-8 w-8 text-[#049CE3]" />,
+    title: "Media Planning",
     description:
-      "Custom websites and applications built with cutting-edge technology for optimal performance and user experience.",
+      "Media planning involves strategizing, reporting, and optimizing media activities",
   },
   {
     icon: <Megaphone className="h-8 w-8 text-[#049CE3]" />,
-    title: "Digital Marketing",
+    title: "Social Media & Influencer Marketing",
     description:
-      "Data-driven marketing campaigns that increase visibility, engagement, and conversion across digital channels.",
+      "Utilizing various paid social platforms for an impactful brand performance campaign.",
   },
   {
     icon: <Smartphone className="h-8 w-8 text-[#049CE3]" />,
-    title: "Mobile Solutions",
+    title: "Paid Digital Amplification",
     description:
-      "Native and cross-platform mobile applications designed for seamless user experiences across all devices.",
+      "Run paid ads on Google, Facebook, YouTube, Top Apps and Websites",
   },
   {
-    icon: <LineChart className="h-8 w-8 text-[#049CE3]" />,
-    title: "Analytics & Insights",
+    icon: <Code className="h-8 w-8 text-[#049CE3]" />,
+    title: "Web Development & E-Commerce",
     description:
-      "Comprehensive data analysis to understand user behavior and optimize your digital presence for better results.",
+      "Building responsive, user-friendly websites and e-commerce platforms that enhance your brand and drive seamless online experiences.",
   },
   {
-    icon: <Globe className="h-8 w-8 text-[#049CE3]" />,
+    icon: <Pencil className="h-8 w-8 text-[#049CE3]" />,
     title: "Content Creation",
     description:
       "Engaging, strategic content that tells your brand story and connects with your target audience.",
