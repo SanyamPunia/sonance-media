@@ -1,21 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import {
-  motion,
-  useScroll,
-  useTransform,
   animate,
+  motion,
   useMotionValue,
+  useScroll,
   useSpring,
+  useTransform,
 } from "framer-motion";
-import Image from "next/image";
 import { ArrowRight, Plus } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 import { Spotlight } from "./ui/spotlight";
-import { cn } from "@/lib/utils";
 
 const galleryImages = [
   "/hero/hero-1.jpg",
