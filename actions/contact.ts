@@ -1,13 +1,11 @@
 "use server";
 
+import { ContactFormEmail } from "@/components/emails/contact-form-email";
 import { Resend } from "resend";
 import { z } from "zod";
-import { ContactFormEmail } from "@/components/emails/contact-form-email";
 
-// Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Form validation schema
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -25,10 +23,8 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export async function sendContactEmail(formData: ContactFormValues) {
   try {
-    // Validate form data
     const validatedData = contactFormSchema.parse(formData);
 
-    // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: "Sonance Media <onboarding@resend.dev>",
       to: ["pranjal.sharma@diptree.com"],
