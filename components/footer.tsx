@@ -44,7 +44,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#services"
+                  href="/#services"
                   className="text-xs text-muted-foreground hover:text-[#049CE3]"
                 >
                   Services
@@ -52,7 +52,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#work"
+                  href="/#work"
                   className="text-xs text-muted-foreground hover:text-[#049CE3]"
                 >
                   Work
@@ -60,7 +60,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#channels"
+                  href="/#channels"
                   className="text-xs text-muted-foreground hover:text-[#049CE3]"
                 >
                   Channels
@@ -68,7 +68,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#placements"
+                  href="/#placements"
                   className="text-xs text-muted-foreground hover:text-[#049CE3]"
                 >
                   Placements
@@ -76,7 +76,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#testimonials"
+                  href="/#testimonials"
                   className="text-xs text-muted-foreground hover:text-[#049CE3]"
                 >
                   Testimonials
@@ -84,7 +84,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   className="text-xs text-muted-foreground hover:text-[#049CE3]"
                 >
                   Contact

@@ -50,37 +50,37 @@ export function Navbar() {
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
             <Link
-              href="#services"
+              href="/#services"
               className="text-xs font-medium hover:text-[#049CE3]"
             >
               SERVICES
             </Link>
             <Link
-              href="#work"
+              href="/#work"
               className="text-xs font-medium hover:text-[#049CE3]"
             >
               WORK
             </Link>
             <Link
-              href="#channels"
+              href="/#channels"
               className="text-xs font-medium hover:text-[#049CE3]"
             >
               CHANNELS
             </Link>
             <Link
-              href="#placements"
+              href="/#placements"
               className="text-xs font-medium hover:text-[#049CE3]"
             >
               PLACEMENTS
             </Link>
             <Link
-              href="#testimonials"
+              href="/#testimonials"
               className="text-xs font-medium hover:text-[#049CE3]"
             >
               TESTIMONIALS
             </Link>
             <Link
-              href="#contact"
+              href="/#contact"
               className="text-xs font-medium hover:text-[#049CE3]"
             >
               CONTACT
@@ -88,17 +88,14 @@ export function Navbar() {
           </nav>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <Button
-              size="sm"
-              className="hidden md:flex text-xs rounded-md border-border shadow-none bg-[#049CE3] hover:bg-[#0380bb]"
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              GET IN TOUCH
-            </Button>
+            <Link href="/#contact">
+              <Button
+                size="sm"
+                className="hidden md:flex text-xs rounded-md border-border shadow-none bg-[#049CE3] hover:bg-[#0380bb]"
+              >
+                GET IN TOUCH
+              </Button>
+            </Link>
             <Sheet>
               <SheetTrigger asChild>
                 <Button
@@ -119,63 +116,49 @@ export function Navbar() {
                 </div>
                 <nav className="flex flex-col space-y-6">
                   <Link
-                    href="#services"
+                    href="/#services"
                     className="text-xs font-medium hover:text-[#049CE3]"
                   >
                     SERVICES
                   </Link>
                   <Link
-                    href="#work"
+                    href="/#work"
                     className="text-xs font-medium hover:text-[#049CE3]"
                   >
                     WORK
                   </Link>
                   <Link
-                    href="#channels"
+                    href="/#channels"
                     className="text-xs font-medium hover:text-[#049CE3]"
                   >
                     CHANNELS
                   </Link>
                   <Link
-                    href="#placements"
+                    href="/#placements"
                     className="text-xs font-medium hover:text-[#049CE3]"
                   >
                     PLACEMENTS
                   </Link>
                   <Link
-                    href="#testimonials"
+                    href="/#testimonials"
                     className="text-xs font-medium hover:text-[#049CE3]"
                   >
                     TESTIMONIALS
                   </Link>
                   <Link
-                    href="#contact"
+                    href="/#contact"
                     className="text-xs font-medium hover:text-[#049CE3]"
                   >
                     CONTACT
                   </Link>
-                  <Button
-                    size="sm"
-                    className="w-full text-xs rounded-md border-border shadow-none mt-4 bg-[#049CE3] hover:bg-[#0380bb]"
-                    onClick={() => {
-                      document
-                        .getElementById("contact")
-                        ?.scrollIntoView({ behavior: "smooth" });
-
-                      const sheet = document.querySelector(
-                        '[data-state="open"]'
-                      );
-                      if (sheet) {
-                        const closeButton = sheet.querySelector(
-                          "button[data-radix-collection-item]"
-                        );
-
-                        (closeButton as HTMLButtonElement)?.click();
-                      }
-                    }}
-                  >
-                    GET IN TOUCH
-                  </Button>
+                  <Link href="/#contact">
+                    <Button
+                      size="sm"
+                      className="w-full text-xs rounded-md border-border shadow-none mt-4 bg-[#049CE3] hover:bg-[#0380bb]"
+                    >
+                      GET IN TOUCH
+                    </Button>
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>

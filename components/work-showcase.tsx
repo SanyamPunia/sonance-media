@@ -13,7 +13,7 @@ const projects = [
     category: "Brand Strategy",
     description:
       "A complete brand overhaul for a sustainable product line in a competitive market focusing on a digital audience.",
-    image: "/hero/hero-5.jpg",
+    image: "/work/modern-market.jpg",
   },
   {
     title: "Engagement Led Traffic Campaign",
@@ -27,7 +27,7 @@ const projects = [
     category: "Integrated Marketing",
     description:
       "Combining channels like OOH media, cinema, and online websites and apps & influencer marketing to drive a 360° marketing narrative.",
-    image: "/work/sonance-2.jpg",
+    image: "/work/online-media.jpg",
   },
 ];
 
@@ -35,7 +35,6 @@ export function WorkShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Auto-advance the slider
   useEffect(() => {
     if (!isAutoPlaying) return;
 
@@ -46,12 +45,10 @@ export function WorkShowcase() {
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
-  // Pause auto-play when user interacts
   const handleManualChange = (index: number) => {
     setActiveIndex(index);
     setIsAutoPlaying(false);
 
-    // Resume auto-play after 10 seconds of inactivity
     const timeout = setTimeout(() => {
       setIsAutoPlaying(true);
     }, 10000);
@@ -89,7 +86,6 @@ export function WorkShowcase() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Left side - Image */}
           <div className="relative overflow-hidden rounded-md border border-border aspect-[4/3]">
             <AnimatePresence mode="wait">
               <motion.div
