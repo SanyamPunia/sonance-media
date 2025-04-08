@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: ["/"],
       disallow: "/private/",
     },
-    sitemap: "https://www.sonancemedia.in",
+    sitemap: "https://www.sonancemedia.in/sitemap.xml",
   };
 }
